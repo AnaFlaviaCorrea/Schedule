@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana;
+    text-decoration: none;
+}
+table{
+    width: 800px;
+    margin: 40px auto;
+    border-collapse: collapse;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+
+}
+thead >tr{
+    background-color: rgb(40, 165, 123);
+    color: white;
+}
+tr > th, tr > td{
+    padding: 15px 20px;
+}
+tbody > tr:nth-last-of-type(even){
+    background-color: rgba(19, 92, 52, 0.100);
+
+}
+tbody > tr:last-of-type {
+    border-bottom: 3px solid rgb(40, 165, 123);
+}
+.pagination{
+    display: flex;
+    width: 800px;
+    margin: 5px auto;
+    gap: 10px;
+
+}
+.pagination > a{
+background-color: rgb(40,165,123);
+padding: 10px 15px;
+color: white;
+border-radius: 10px;
+
+}
+h1{
+    text-align: center;
+    margin: 10px;
+    color: rgb(15, 88, 64) ;
+}
+form{
+    width: 800px;
+    margin: 0px auto;
+}
+form > input {
+    height: 2rem;
+    padding: 0 24px;
+    
+}

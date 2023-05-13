@@ -1,14 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 </head>
 <body>
-    <h1>Olá mundo
-        
+    <h1>Schedule   
     </h1>
+    <form action="{% url 'search'%}">
+        <input type="text" name= "search" placeholder=" Buscar contato">
+        <button type="submit">Buscar</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Active</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for contacts in contacts%}
+            <tr>
+                <td>{{contacts.id}}</td>
+                <td>{{contacts.name}}</td>
+                <td>{{contacts.email}}</td>
+                <td>{{contacts.cpf}}</td>
+                {% if contacts.active == True %}
+                <td><i class="fa fa-circle-check" style="color: green;"></i></td>
+                {% else%}
+                <td><i class="fa fa-circle-xmark" style="color: red;"></i></td>
+                {%endif%}
+
+                
+            </tr>
+            {%endfor%}
+            
+        </tbody>
+    </table>
+    <div class="pagination">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+    </div>
 </body>
 </html>
