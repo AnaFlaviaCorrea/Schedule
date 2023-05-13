@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styleI.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="card_container">
+        <div class="card">
+            {% if contacts.image %}
+            <div class="card_img"> <img src="{{contacts.image.url }}" alt="{{contacts.name}}">
+                
+            </div>
+            {% else %}
+            <div class="card_img">
+                <img src="https://cdn-icons-png.flaticon.com/512/1695/1695213.png"
+                alt="" srcset="">
+            </div>
+            
+            {% endif %}
+
+            <div class="card_description">
+                <h2>{{contacts.name}} </h2>
+                <p><strong>Phone:</strong> {{ contacts.phone }}</p>
+                <p><strong>Birthday:</strong> {{ contacts.date_birth }}</p>
+                <p><strong>Email:</strong> {{ contacts.email }}</p>
+                <p><strong>CPF:</strong> {{ contacts.cpf }}</p>
+
+            </div>
+            <div class="btn">
+                <a href="{%url 'delete' contacts.id %}">Deletar</a>
+                <a href="{%url 'edit' contacts.id %}">Alterar</a>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

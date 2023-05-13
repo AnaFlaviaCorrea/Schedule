@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{% static 'styleIII.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="{% static 'jquery.mask.js'%}"></script>
+    <script defer src="{% static 'jquery.mask.min.js'%}"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="card">
+        <h1>Alterar contato</h1>
+        <form method="POST" enctype="multipart/form-data" action=""> {% csrf_token%}
+            <input name="Name" value="{{contacts.name}}" type="text" placeholder="Name">
+            <input name="CPF" class=" cpf" value="{{contacts.cpf}}" type="text" placeholder="CPF">
+            <input name="Email" value="{{contacts.email}}" type="text" placeholder="Email">
+            <input name="Phone" class=" phone" value="{{contacts.phone}}" type="text" placeholder="Phone">
+            <input name="Height" class=" height" value="{{contacts.height}}" type="text" placeholder="Height">
+            <input name="Description" value="{{contacts.description}}" type="text" placeholder="Description">
+            <input name="Birthday" value="{{contacts.date_birth | date:'Y-m-d'}}" type="date" placeholder="Birthday">
+            {% if contacts.image %}
+          
+            <img class = "card_img" src="{{contacts.image.url}}" alt="">
+            <label for="img"><i class="fa fa-upload"></i></label>
+            <input id="img" name="image" value="{{contacts.image.url}}" type="file" placeholder="Image">
+            {% else %}
+            <label for="img"><i class="fa fa-upload"></i></label>
+            <input id="img" name="image" type="file" accept="image" placeholder="Image">
+
+            {% endif %}
+
+            <input id="marcado" name="check" type="checkbox" {% if contacts.active == True %} checked {% endif %}>
+            <button type="submit">Add</button>
+            <img class="img_input card-img " src="" alt="">
+        </form>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.height').mask('0.00')
+            $('.cpf').mask('000.000.000-00')
+            $('.phone').mask('(00) 00000-0000')
+        })
+        let img = document.querySelector('#img')
+        let img_input = document.querySelector('.img_input')
+        img.addEventListener('change', function () {
+            img_input.src = window.URL.createObjectURL(this.files[0])
+
+        })
+    </script>
+
+
+</body>
+
+</html>

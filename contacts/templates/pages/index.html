@@ -1,21 +1,36 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Schedule   
+    <h1>Schedule
     </h1>
+    <div class="sair_btn"><a href="{% url 'logout' %}">Sair</a></div>
     <form action="{% url 'search'%}">
-        <input type="text" name= "search" placeholder=" Buscar contato">
+        <input type="text" name="search" placeholder=" Buscar contato">
         <button type="submit">Buscar</button>
     </form>
+    
+    <form action="{% url 'filter' %}">
+        <label><input type="radio" name="filter" value="ativo">Ativo</label>
+        <label><input type="radio" name="filter" value="inativo">Inativo</label>
+        <button type="submit">Filter</button>
+    </form>
+
+    <div class="add_btn"> <a href="{%url 'add'%}">Add contact</a></div>
+  
+
     <table>
         <thead>
             <tr>
@@ -24,14 +39,14 @@
                 <th>Email</th>
                 <th>CPF</th>
                 <th>Active</th>
-               
+
             </tr>
         </thead>
         <tbody>
             {% for contacts in contacts%}
             <tr>
                 <td>{{contacts.id}}</td>
-                <td>{{contacts.name}}</td>
+                <td><a href="{% url 'details' contacts.id %}"> {{contacts.name}}</a></td>
                 <td>{{contacts.email}}</td>
                 <td>{{contacts.cpf}}</td>
                 {% if contacts.active == True %}
@@ -40,10 +55,10 @@
                 <td><i class="fa fa-circle-xmark" style="color: red;"></i></td>
                 {%endif%}
 
-                
+
             </tr>
             {%endfor%}
-            
+
         </tbody>
     </table>
     <div class="pagination">
@@ -53,5 +68,7 @@
         <a href="#">4</a>
         <a href="#">5</a>
     </div>
+    
 </body>
+
 </html>

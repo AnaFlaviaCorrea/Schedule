@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styleII.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="{% static 'jquery.mask.js'%}"></script>
+    <script defer src="{% static 'jquery.mask.min.js'%}"></script>
+    
+</head>
+
+<body>
+   
+    <div class="card">
+        <h1> Adicione seu contato</h1>
+        <form method="POST" enctype="multipart/form-data" action="">
+            {% csrf_token%}
+            <input name="Name" type="text" placeholder="Name">
+            <input class="cpf" name="CPF" type="text" placeholder="CPF">
+            <input name="Email" type="text" placeholder="Email">
+            <input class="phone" name="Phone" type="text" placeholder="Phone">
+            <input class="height" name="Height" type="text" placeholder="Height">
+            <input name="Description" class="scrollable-input"  type="text" placeholder="Description">
+            <input name="Birthday" type="date" placeholder="Birthday">
+            <input name="image" type="file" placeholder="Image">
+            <button type="submit">Add</button>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.height').mask('0.00')
+            $('.cpf').mask('000.000.000-00')
+            $('.phone').mask('(00) 00000-0000')
+        })
+    </script>
+</body>
+
+</html>
